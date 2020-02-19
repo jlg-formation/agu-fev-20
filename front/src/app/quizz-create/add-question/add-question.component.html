@@ -6,7 +6,7 @@
       <textarea rows="3"></textarea>
     </label>
     <div>Réponses possibles</div>
-    <label *ngFor="let letter of ['A', 'B', 'C', 'D']">
+    <label class="answer" *ngFor="let letter of ['A', 'B', 'C', 'D']">
       <span>{{ letter }}</span>
       <input type="text" />
       <input type="radio" />

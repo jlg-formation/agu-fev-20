@@ -11,3 +11,7 @@ button {
   width: $side;
   height: $side;
 }
+
+main {
+  flex-flow: row;
+}

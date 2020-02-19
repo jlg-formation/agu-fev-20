@@ -64,10 +64,17 @@ form {
   flex-flow: column;
 }
 
-input {
+input, textarea {
   padding: 0.5em 1em;
   border: 0.1em solid #eee;
   width: 100%;
+  &[type="radio"] {
+    width: 3em;
+  }
+}
+
+h1 {
+  text-align: center;
 }
 
 
