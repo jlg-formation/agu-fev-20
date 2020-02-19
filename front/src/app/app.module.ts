@@ -6,6 +6,7 @@ import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { LegalComponent } from './routes/legal/legal.component';
 import { HomeComponent } from './routes/home/home.component';
+import { QuizzCreateModule } from './quizz-create/quizz-create.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomeComponent } from './routes/home/home.component';
   imports: [
     BrowserModule,
     LayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    QuizzCreateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
