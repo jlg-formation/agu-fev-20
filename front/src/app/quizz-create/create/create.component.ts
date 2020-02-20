@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { QuizzService } from 'src/app/services/quizz.service';
 
 @Component({
   selector: 'app-create',
@@ -14,12 +15,13 @@ export class CreateComponent implements OnInit {
       Validators.maxLength(20),
     ]),
   });
-  constructor(private router: Router) {}
+  constructor(private router: Router, private quizz: QuizzService) {}
 
   ngOnInit(): void {}
 
   submit() {
     console.log('submit');
+    this.quizz.create(this.f.value.name);
     this.router.navigateByUrl('/setup');
   }
 }
