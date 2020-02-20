@@ -60,4 +60,8 @@ export class QuizzService {
   hasQuizz(): boolean {
     return Object.keys(this.map).length > 0;
   }
+
+  getQuizzArray(): Quizz[] {
+    return Object.values(this.map);
+  }
 }

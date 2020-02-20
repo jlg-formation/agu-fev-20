@@ -2,8 +2,8 @@
   <h1>Liste des quizz</h1>
 
   <div>
-    <button routerLink="/question">Les capitales d'Europe</button>
-    <button>Maitriser Angular</button>
-    <button>La gestion de conf git</button>
+    <button *ngFor="let q of quizz.getQuizzArray()" routerLink="/question">
+      {{ q.name }}
+    </button>
   </div>
 </main>
