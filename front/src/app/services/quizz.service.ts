@@ -56,4 +56,8 @@ export class QuizzService {
     }
     return map;
   }
+
+  hasQuizz(): boolean {
+    return Object.keys(this.map).length > 0;
+  }
 }
