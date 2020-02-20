@@ -1,6 +1,6 @@
 <main>
   <h1>Quizz: {{ quizz.current.name }}</h1>
-  <p>Nombre de questions : 0</p>
+<p>Nombre de questions : {{ quizz.current.questions.length }}</p>
   <button appAutofocus routerLink="/add-question">Ajouter une question</button>
-  <button routerLink="/finished" class="primary">Terminer</button>
+  <button *ngIf="quizz.current.questions.length > 0" routerLink="/finished" class="primary">Terminer</button>
 </main>
