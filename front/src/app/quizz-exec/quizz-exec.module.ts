@@ -5,13 +5,15 @@ import { QuizzExecRoutingModule } from './quizz-exec-routing.module';
 import { ListComponent } from './list/list.component';
 import { QuestionComponent } from './question/question.component';
 import { ScoreComponent } from './score/score.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [ListComponent, QuestionComponent, ScoreComponent],
   imports: [
     CommonModule,
-    QuizzExecRoutingModule
+    QuizzExecRoutingModule,
+    FontAwesomeModule
   ]
 })
 export class QuizzExecModule { }
