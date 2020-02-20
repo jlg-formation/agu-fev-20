@@ -2,7 +2,7 @@
   <h1>Liste des quizz</h1>
 
   <div>
-    <button *ngFor="let q of quizz.getQuizzArray()" routerLink="/question">
+    <button *ngFor="let q of quizz.getQuizzArray()" (click)="start(q)">
       {{ q.name }}
     </button>
   </div>

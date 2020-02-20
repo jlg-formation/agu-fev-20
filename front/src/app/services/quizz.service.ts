@@ -31,6 +31,11 @@ export class QuizzService {
     return q;
   }
 
+  setCurrent(q: Quizz) {
+    this.current = q;
+    this.saveCurrent();
+  }
+
   addQuestion(question: Question) {
     this.current.questions.push(question);
     this.saveCurrent();
