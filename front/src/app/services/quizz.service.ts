@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Quizz } from '../entities/quizz';
+import { Question } from '../interfaces/question';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizzService {
+
   current = this.getCurrent();
   constructor() {}
 
   create(name: string) {
     this.current = new Quizz();
     this.current.name = name;
+    this.saveCurrent();
+  }
+
+  saveCurrent() {
     localStorage.setItem('current', JSON.stringify(this.current));
   }
 
@@ -22,5 +28,10 @@ export class QuizzService {
     const q = JSON.parse(str);
     Object.setPrototypeOf(q, Quizz.prototype);
     return q;
+  }
+
+  addQuestion(question: Question) {
+    this.current.questions.push(question);
+    this.saveCurrent();
   }
 }
