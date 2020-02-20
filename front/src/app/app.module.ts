@@ -9,6 +9,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { QuizzCreateModule } from './quizz-create/quizz-create.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QuizzExecModule } from './quizz-exec/quizz-exec.module';
+import { WidgetModule } from './widget/widget.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { QuizzExecModule } from './quizz-exec/quizz-exec.module';
     AppRoutingModule,
     QuizzCreateModule,
     FontAwesomeModule,
-    QuizzExecModule
+    QuizzExecModule,
+    WidgetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
