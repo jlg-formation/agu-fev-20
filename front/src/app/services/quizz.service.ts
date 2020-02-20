@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Quizz } from '../entities/quizz';
 import { Question } from '../interfaces/question';
+import { QuizzMap } from '../interfaces/quizz-map';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuizzService {
-
   current = this.getCurrent();
+  map = this.getMap();
   constructor() {}
 
   create(name: string) {
@@ -33,5 +34,26 @@ export class QuizzService {
   addQuestion(question: Question) {
     this.current.questions.push(question);
     this.saveCurrent();
+  }
+
+  saveQuizz() {
+    this.map[this.current.name] = this.current;
+    this.saveMap();
+  }
+
+  saveMap() {
+    localStorage.setItem('map', JSON.stringify(this.map));
+  }
+
+  getMap(): QuizzMap {
+    const str = localStorage.getItem('map');
+    if (!str) {
+      return {};
+    }
+    const map: QuizzMap = JSON.parse(str);
+    for (const q of Object.values(map)) {
+      Object.setPrototypeOf(q, Quizz.prototype);
+    }
+    return map;
   }
 }
