@@ -10,13 +10,7 @@ button {
   height: $side;
 }
 
-div.wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-div.sub {
+div {
   display: flex;
   flex-wrap: wrap;
 }
