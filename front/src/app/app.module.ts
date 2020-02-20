@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LegalComponent } from './routes/legal/legal.component';
 import { HomeComponent } from './routes/home/home.component';
 import { QuizzCreateModule } from './quizz-create/quizz-create.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { QuizzCreateModule } from './quizz-create/quizz-create.module';
     BrowserModule,
     LayoutModule,
     AppRoutingModule,
-    QuizzCreateModule
+    QuizzCreateModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
