@@ -9,6 +9,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit {
+
+  duration = 90;
   f = new FormGroup({
     answer: new FormControl('', Validators.required),
   });
@@ -60,5 +62,9 @@ export class QuestionComponent implements OnInit {
       '/question/' + (this.quizz.progress.questionId + 1)
     );
     this.ngOnInit();
+  }
+
+  onExpiration(str: string) {
+    console.log('onExpiration', str);
   }
 }

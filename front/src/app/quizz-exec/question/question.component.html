@@ -1,4 +1,5 @@
 <main>
+  <app-timer [duration]="duration" (expiration)="onExpiration($event)"></app-timer>
   <h1>Quizz : {{ quizz.current.name }}</h1>
   <h2>
     Question : {{ myVeryNiceIndex }} / {{ quizz.current.questions.length }}
