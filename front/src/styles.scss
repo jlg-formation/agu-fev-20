@@ -1,12 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/normalize.css/normalize.css';
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
 body {
   font-family: sans-serif;
+  @media only screen and (min-width: 1200px) {
+    font-size: 1.7vw;
+  }
 }
 
 a {
@@ -64,17 +69,17 @@ form {
   flex-flow: column;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 0.5em 1em;
   border: 0.1em solid #eee;
   width: 100%;
-  &[type="radio"] {
+  &[type='radio'] {
     width: 3em;
   }
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
 }
-
-
