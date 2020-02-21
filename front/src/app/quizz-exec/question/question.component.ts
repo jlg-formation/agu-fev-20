@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { QuizzService } from 'src/app/services/quizz.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TimerComponent } from 'src/app/widget/timer/timer.component';
 
 @Component({
   selector: 'app-question',
@@ -9,8 +10,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit {
+  @ViewChild(TimerComponent) timer: TimerComponent;
 
-  duration = 90;
+  duration = 5;
   f = new FormGroup({
     answer: new FormControl('', Validators.required),
   });
@@ -24,6 +26,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.f.reset();
+    this.timer?.reset();
     this.route.params.subscribe({
       next: data => {
         console.log('data: ', data);
@@ -66,5 +69,6 @@ export class QuestionComponent implements OnInit {
 
   onExpiration(str: string) {
     console.log('onExpiration', str);
+    this.submit();
   }
 }
