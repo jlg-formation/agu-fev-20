@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { QuizzService } from 'src/app/services/quizz.service';
+import { validateTrim } from 'src/app/validators/trim';
 
 @Component({
   selector: 'app-create',
@@ -11,7 +12,7 @@ import { QuizzService } from 'src/app/services/quizz.service';
 export class CreateComponent implements OnInit {
   f = new FormGroup({
     name: new FormControl('toto', [
-      Validators.required,
+      validateTrim,
       Validators.maxLength(20),
     ]),
   });
