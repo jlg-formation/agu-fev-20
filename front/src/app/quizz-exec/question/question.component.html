@@ -1,28 +1,19 @@
 <main>
-  <h1>Quizz : Les plus belles capitales d'Europe</h1>
-  <h2>Question : {{ myVeryNiceIndex }} / {{quizz.current.questions.length }}</h2>
-  <p>Quelle est la capitale de la France ?</p>
-  <form ngNoForm>
-    <label>
-      <input type="radio" />
-      <span>A</span>
-      <span>Paris</span>
+  <h1>Quizz : {{ quizz.current.name }}</h1>
+  <h2>
+    Question : {{ myVeryNiceIndex }} / {{ quizz.current.questions.length }}
+  </h2>
+  <p>{{ quizz.current.questions[quizz.progress.questionId].label }}</p>
+  <form [formGroup]="f" (ngSubmit)="submit()">
+    <label *ngFor="let letter of ['A', 'B', 'C', 'D']">
+      <input type="radio" [value]="letter" formControlName="answer" />
+      <span>{{ letter }}</span>
+      <span>{{
+        quizz.current.questions[quizz.progress.questionId]['answer' + letter]
+      }}</span>
     </label>
-    <label>
-      <input type="radio" />
-      <span>B</span>
-      <span>Londres</span>
-    </label>
-    <label>
-      <input type="radio" />
-      <span>C</span>
-      <span>Berlin</span>
-    </label>
-    <label>
-      <input type="radio" />
-      <span>D</span>
-      <span>Rome</span>
-    </label>
-    <button routerLink="/score" class="primary">Suivant</button>
+    <button [disabled]="f.invalid" type="submit" class="primary">
+      Suivant
+    </button>
   </form>
 </main>

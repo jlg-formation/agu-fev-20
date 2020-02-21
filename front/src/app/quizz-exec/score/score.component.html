@@ -1,6 +1,9 @@
 <main>
   <fa-icon [icon]="faSmile"></fa-icon>
   <h1>Bravo !</h1>
-  <p>Ton score : 3 / 4</p>
+  <p>
+    Ton score : {{ quizz.progress.score }} /
+    {{ quizz.current.questions.length }}
+  </p>
   <button appAutofocus class="primary" routerLink="/">Retour accueil</button>
 </main>

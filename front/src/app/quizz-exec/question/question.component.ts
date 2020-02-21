@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuizzService } from 'src/app/services/quizz.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -8,10 +9,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./question.component.scss'],
 })
 export class QuestionComponent implements OnInit {
+  f = new FormGroup({
+    answer: new FormControl('', Validators.required),
+  });
+
   myVeryNiceIndex = -1;
-  constructor(public quizz: QuizzService, private route: ActivatedRoute) {}
+  constructor(
+    public quizz: QuizzService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.f.reset();
     this.route.params.subscribe({
       next: data => {
         console.log('data: ', data);
@@ -24,5 +34,31 @@ export class QuestionComponent implements OnInit {
         console.log('complete');
       },
     });
+  }
+
+  submit() {
+    console.log('submit');
+    const userAnswer = this.f.value.answer;
+    console.log('userAnswer: ', userAnswer);
+    const correctAnswer = this.quizz.current.questions[
+      this.quizz.progress.questionId
+    ].correctAnswer;
+    console.log('correctAnswer: ', correctAnswer);
+
+    if (userAnswer === correctAnswer) {
+      this.quizz.progress.score++;
+    }
+    this.quizz.progress.questionId++;
+    this.quizz.saveProgress();
+    if (
+      this.quizz.progress.questionId === this.quizz.current.questions.length
+    ) {
+      this.router.navigateByUrl('/score');
+      return;
+    }
+    this.router.navigateByUrl(
+      '/question/' + (this.quizz.progress.questionId + 1)
+    );
+    this.ngOnInit();
   }
 }
