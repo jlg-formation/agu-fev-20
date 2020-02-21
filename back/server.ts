@@ -4,11 +4,12 @@ import cors = require('cors');
 import fs = require('fs');
 import path = require('path');
 const app = express();
+import { QuizzMap } from '../front/src/app/interfaces/quizz-map';
 
 const www = '../front/dist/front';
 
 const filename = path.resolve(__dirname, 'quizz-map.json');
-let quizzMap = {};
+let quizzMap: QuizzMap = {};
 try {
   const str = fs.readFileSync(filename, { encoding: 'utf8' });
   quizzMap = JSON.parse(str);
@@ -24,7 +25,7 @@ app.get('/ws/quizz', (req, res, next) => {
 });
 
 app.post('/ws/quizz', (req, res, next) => {
-  quizzMap = req.body;
+  quizzMap = req.body as QuizzMap;
   fs.writeFileSync(filename, JSON.stringify(quizzMap, undefined, 2));
   return res.status(201).end();
 });
