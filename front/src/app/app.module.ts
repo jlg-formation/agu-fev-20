@@ -10,13 +10,12 @@ import { QuizzCreateModule } from './quizz-create/quizz-create.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QuizzExecModule } from './quizz-exec/quizz-exec.module';
 import { WidgetModule } from './widget/widget.module';
+import { QuizzService } from './services/quizz.service';
+import { QuizzHttpService } from './services/quizz-http.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LegalComponent,
-    HomeComponent
-  ],
+  declarations: [AppComponent, LegalComponent, HomeComponent],
   imports: [
     BrowserModule,
     LayoutModule,
@@ -24,9 +23,15 @@ import { WidgetModule } from './widget/widget.module';
     QuizzCreateModule,
     FontAwesomeModule,
     QuizzExecModule,
-    WidgetModule
+    WidgetModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: QuizzService,
+      useClass: QuizzHttpService,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
