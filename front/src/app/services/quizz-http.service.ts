@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { QuizzService } from './quizz.service';
 import { HttpClient } from '@angular/common/http';
+import { QuizzMap } from '../interfaces/quizz-map';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +10,30 @@ export class QuizzHttpService extends QuizzService {
   constructor(private http: HttpClient) {
     super();
     console.log('http service');
-    this.http.get('http://localhost:3000/ws/quizz').subscribe({
-      next: data => {
-        console.log('data: ', data);
+    this.refresh();
+  }
+
+  refresh() {
+    this.http.get<QuizzMap>('http://localhost:3000/ws/quizz').subscribe({
+      next: map => {
+        console.log('map: ', map);
+        this.map = map;
+        this.saveMap();
       },
       error: error => {
         console.error('error: ', error);
       },
-      complete: () => console.log('complete'),
+      complete: () => console.log('get complete'),
+    });
+  }
+
+  saveQuizz() {
+    super.saveQuizz();
+    this.http.post('http://localhost:3000/ws/quizz', this.map).subscribe({
+      error: error => {
+        console.error('error: ', error);
+      },
+      complete: () => console.log('post complete'),
     });
   }
 }
